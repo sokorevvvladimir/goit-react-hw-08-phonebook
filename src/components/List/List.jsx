@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import Notification from '../Notification';
-import { getFilter } from '../../redux/selectors';
+import { getFilter } from '../../redux/filter/filterSelectors';
 import { useGetAllContactsQuery } from 'redux/contactsSlice';
 import ListItem from 'components/ListItem';
 import MainLoaderSpinner from 'components/MainLoaderSpinner';

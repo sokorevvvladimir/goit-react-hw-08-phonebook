@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { clearFilter } from 'redux/filterSlice';
+import { clearFilter } from 'redux/filter/filterSlice';
 import {
   useDeleteContactMutation,
   useUpdateContactMutation,

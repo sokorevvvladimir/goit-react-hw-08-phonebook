@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
-import { changeFilter } from '../../redux/filterSlice';
-import { getFilter } from '../../redux/selectors';
+import { changeFilter } from '../../redux/filter/filterSlice';
+import { getFilter } from '../../redux/filter/filterSelectors';
 import { useGetContactsByNameQuery } from 'redux/contactsSlice';
 
 const Label = styled.label`
