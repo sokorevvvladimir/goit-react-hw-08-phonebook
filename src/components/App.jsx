@@ -6,7 +6,7 @@ import { authOperations } from '../redux/auth';
 import { useEffect, lazy, Suspense } from 'react';
 import { useDispatch } from 'react-redux';
 import PrivateRoute from './PrivateRoute';
-import PublicRoute from './PublicRoute';
+// import PublicRoute from './PublicRoute';
 
 const Layout = lazy(() => import('./Layout'));
 const HomePage = lazy(() => import('../pages/HomePage'));
