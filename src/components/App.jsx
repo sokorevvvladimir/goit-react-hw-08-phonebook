@@ -1,14 +1,18 @@
 import styled from 'styled-components';
-import HomePage from '../pages/HomePage';
-import Layout from './Layout';
 import { Toaster } from 'react-hot-toast';
 import { Routes, Route } from 'react-router-dom';
-import RegisterPage from '../pages/RegisterPage';
-import LoginPage from '../pages/LoginPage';
-import MainContentPage from '../pages/MainContentPage';
+import MainLoader from './Watch';
 import { authOperations } from '../redux/auth';
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux'
+import { useEffect, lazy, Suspense } from 'react';
+import { useDispatch } from 'react-redux';
+import PrivateRoute from './PrivateRoute';
+import PublicRoute from './PublicRoute';
+
+const Layout = lazy(() => import('./Layout'));
+const HomePage = lazy(() => import('../pages/HomePage'));
+const RegisterPage = lazy(() => import('../pages/RegisterPage'));
+const LoginPage = lazy(() => import('../pages/LoginPage'));
+const MainContentPage = lazy(() => import('../pages/MainContentPage'));
 
 const Container = styled.div`
   width: 95vw;
@@ -23,14 +27,18 @@ const App = () => {
   }, [dispatch]);
   return (
     <Container>
+      <Suspense fallback={<MainLoader/>}>
       <Routes>
         <Route path="/" element={<Layout/>}>
           <Route index element={<HomePage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/contacts" element={ <MainContentPage/>}/>
+          <Route path="/contacts" element={<PrivateRoute />}>
+              <Route path="/contacts" element={<MainContentPage />} />
+          </Route> 
         </Route>
       </Routes>
+      </Suspense>
       <Toaster />
     </Container>
   );
