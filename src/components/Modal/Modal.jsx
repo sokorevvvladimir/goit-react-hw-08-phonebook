@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
+import PropTypes from 'prop-types';
 
 const BackdropDiv = styled.div`
   position: fixed;
@@ -63,6 +64,11 @@ const Modal = ({ onClose, children }) => {
     </BackdropDiv>,
     modalRoot
   );
+};
+
+Modal.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  children: PropTypes.element.isRequired,
 };
 
 export default Modal;

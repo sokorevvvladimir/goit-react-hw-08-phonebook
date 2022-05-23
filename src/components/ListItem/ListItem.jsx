@@ -8,6 +8,7 @@ import {
 } from 'redux/contactsSlice';
 import { Oval } from 'react-loader-spinner';
 import toast from 'react-hot-toast';
+import PropTypes from 'prop-types'; 
 import Modal from 'components/Modal';
 
 const Li = styled.li`
@@ -230,6 +231,12 @@ const ListItem = ({ id, name, number }) => {
       </Li>
     </>
   );
+};
+
+ListItem.propTypes = {
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  number: PropTypes.string.isRequired,
 };
 
 export default ListItem;
