@@ -14,7 +14,7 @@ const UserMenu = () => {
 
     return <>
         <StyledDiv>
-        
+            <NavLink to="/">Home</NavLink>
             <NavLink to="/contacts">Contacts</NavLink>
             <div>
         <span>{email}</span>

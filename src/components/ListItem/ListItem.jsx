@@ -127,22 +127,22 @@ const Input = styled.input`
   }
 `;
 
-const ListItem = ({ id, name, phone }) => {
+const ListItem = ({ id, name, number }) => {
   const dispatch = useDispatch();
   const [deleteContact, { isLoading: isDeleting }] = useDeleteContactMutation();
   const [updateContact, { isLoading }] = useUpdateContactMutation();
   const [isShown, setIsshown] = useState(false);
   const [newName, setNewName] = useState(name);
-  const [newPhone, setNewPhone] = useState(phone);
+  const [newNumber, setNewNumber] = useState(number);
 
   const toggleModal = () => {
     setIsshown(!isShown);
   };
 
   const onFormSubmit = data => {
-    const { id, newName: name, newPhone: phone } = data;
+    const { id, newName: name, newNumber: number } = data;
 
-    updateContact({ id, name, phone });
+    updateContact({ id, name, number });
     toast.success(`${data.newName} contact corrected!`);
     return;
   };
@@ -153,8 +153,8 @@ const ListItem = ({ id, name, phone }) => {
       case 'name':
         setNewName(value);
         break;
-      case 'phone':
-        setNewPhone(value);
+      case 'number':
+        setNewNumber(value);
         break;
       default:
         return;
@@ -163,7 +163,7 @@ const ListItem = ({ id, name, phone }) => {
 
   const onSubmitHandler = e => {
     e.preventDefault();
-    onFormSubmit({ id, newName, newPhone });
+    onFormSubmit({ id, newName, newNumber });
   };
 
   return (
@@ -184,11 +184,11 @@ const ListItem = ({ id, name, phone }) => {
               />
             </Label>
             <Label>
-              Phone
+              Number
               <Input
                 type="tel"
-                name="phone"
-                value={newPhone}
+                name="number"
+                value={newNumber}
                 pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
                 title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
                 required
@@ -206,7 +206,7 @@ const ListItem = ({ id, name, phone }) => {
         </Modal>
       )}
       <Li>
-        {name}: {phone}
+        {name}: {number}
         <StyledDiv>
           <Button type="button" onClick={toggleModal}>
             Edit

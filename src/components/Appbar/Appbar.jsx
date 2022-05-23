@@ -1,5 +1,3 @@
-
-
 import UserMenu from '../UserMenu';
 import AuthNav from '../AuthNav';
 import { useSelector } from 'react-redux';

@@ -1,5 +1,4 @@
 import { useState } from 'react';
-// import { nanoid } from 'nanoid';
 import styled from 'styled-components';
 import toast from 'react-hot-toast';
 import { useCreateContactMutation } from '../../redux/contactsSlice';
@@ -73,19 +72,19 @@ const Button = styled.button`
 
 const ContactForm = () => {
   const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
+  const [number, setNumber] = useState('');
   const { data } = useGetAllContactsQuery();
   const contacts = data;
   const [createContact, { isLoading }] = useCreateContactMutation();
 
   const onSameName = data => {
-    return contacts.find(
+        return contacts.find(
       ({ name }) => name.toLowerCase() === data.name.toLowerCase()
     );
   };
 
   const onSamePhoneNumber = data => {
-    return contacts.find(({ phone }) => phone === data.phone);
+    return contacts.find(({ number }) => number === data.number);
   };
 
   const onFormSubmit = data => {
@@ -94,7 +93,7 @@ const ContactForm = () => {
       return;
     }
     if (onSamePhoneNumber(data)) {
-      toast.error(`Contact with ${data.phone} number is already in contacts.`);
+      toast.error(`Contact with ${data.number} number is already in contacts.`);
       return;
     }
 
@@ -109,8 +108,8 @@ const ContactForm = () => {
       case 'name':
         setName(value);
         break;
-      case 'phone':
-        setPhone(value);
+      case 'number':
+        setNumber(value);
         break;
       default:
         return;
@@ -119,13 +118,13 @@ const ContactForm = () => {
 
   const onSubmitHandler = e => {
     e.preventDefault();
-    onFormSubmit({ name, phone });
+    onFormSubmit({ name, number });
     reset();
   };
 
   const reset = () => {
     setName('');
-    setPhone('');
+    setNumber('');
   };
 
   return (
@@ -147,8 +146,8 @@ const ContactForm = () => {
           Phone
           <Input
             type="tel"
-            name="phone"
-            value={phone}
+            name="number"
+            value={number}
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
