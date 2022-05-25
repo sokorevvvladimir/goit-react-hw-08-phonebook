@@ -6,6 +6,9 @@ const initialState = {
     token: null,
     isLoggedIn: false,
     isFetchingCurrentUser: false,
+    isLogInAlertShown: false,
+    isRegisterEmailAlertShown: false,
+    isRegisterPasswordAlertShown: false,
 };
 
 const authSlice = createSlice({
@@ -16,11 +19,20 @@ const authSlice = createSlice({
             state.user = action.payload.user;
             state.token = action.payload.token;
             state.isLoggedIn = true;
+            state.isRegisterEmailAlertShown = false;
+            state.isRegisterPasswordAlertShown = false;
+        },
+        [authOperations.register.rejected](state, action) {
+            state[action.payload] = true;
         },
         [authOperations.login.fulfilled](state, action) {
             state.user = action.payload.user;
             state.token = action.payload.token;
             state.isLoggedIn = true;
+            state.isLogInAlertShown = false;
+        },
+        [authOperations.login.rejected](state, action) {
+            state[action.payload] = true;
         },
         [authOperations.logout.fulfilled](state, action) {
             state.user = { name: null, email: null };

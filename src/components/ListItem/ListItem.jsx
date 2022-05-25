@@ -7,9 +7,9 @@ import {
   useUpdateContactMutation,
 } from 'redux/contactsSlice';
 import { Oval } from 'react-loader-spinner';
-import toast from 'react-hot-toast';
 import PropTypes from 'prop-types'; 
 import Modal from 'components/Modal';
+
 
 const Li = styled.li`
   font-size: 18px;
@@ -128,13 +128,14 @@ const Input = styled.input`
   }
 `;
 
-const ListItem = ({ id, name, number }) => {
+const ListItem = ({ id, name, number, passDeletedContactInfoForToast, passUpdatedContactInfoForToast }) => {
   const dispatch = useDispatch();
   const [deleteContact, { isLoading: isDeleting }] = useDeleteContactMutation();
   const [updateContact, { isLoading }] = useUpdateContactMutation();
   const [isShown, setIsshown] = useState(false);
   const [newName, setNewName] = useState(name);
   const [newNumber, setNewNumber] = useState(number);
+  
 
   const toggleModal = () => {
     setIsshown(!isShown);
@@ -144,7 +145,7 @@ const ListItem = ({ id, name, number }) => {
     const { id, newName: name, newNumber: number } = data;
 
     updateContact({ id, name, number });
-    toast.success(`${data.newName} contact corrected!`);
+    passUpdatedContactInfoForToast(true);
     return;
   };
 
@@ -169,6 +170,7 @@ const ListItem = ({ id, name, number }) => {
 
   return (
     <>
+      
       {isShown && (
         <Modal isShown={isShown} onClose={toggleModal}>
           <ModalForm onSubmit={onSubmitHandler}>
@@ -205,7 +207,9 @@ const ListItem = ({ id, name, number }) => {
             </ModalButton>
           </ModalForm>
         </Modal>
+ 
       )}
+      
       <Li>
         {name}: {number}
         <StyledDiv>
@@ -217,7 +221,7 @@ const ListItem = ({ id, name, number }) => {
             onClick={() => {
               dispatch(clearFilter());
               deleteContact(id);
-              toast.success(`${name} deleted from your contacts!`);
+              passDeletedContactInfoForToast(true);
             }}
             disabled={isDeleting}
           >
@@ -229,6 +233,7 @@ const ListItem = ({ id, name, number }) => {
           </Button>
         </StyledDiv>
       </Li>
+      
     </>
   );
 };
@@ -237,6 +242,8 @@ ListItem.propTypes = {
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   number: PropTypes.string.isRequired,
+  passDeletedContactInfoForToast: PropTypes.func.isRequired,
+  passUpdatedContactInfoForToast: PropTypes.func.isRequired,
 };
 
 export default ListItem;

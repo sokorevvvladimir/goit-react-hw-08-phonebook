@@ -12,24 +12,35 @@ const token = {
     },
 }
 
-const register = createAsyncThunk('/auth/register', async credentials => {
+const register = createAsyncThunk('/auth/register', async (credentials, thunkAPI) => {
+    const state = thunkAPI.getState();
     try {
         const { data } = await axios.post('/users/signup', credentials);
         token.set(data.token);
         return data;
     } catch (error) {
-        console.log(error);
+        if (error.response.data.name === 'MongoError') {
+            return thunkAPI.rejectWithValue('isRegisterEmailAlertShown');
+
+        };
+
+        if (error.response.data.errors.password.kind === 'minlength') { 
+            return thunkAPI.rejectWithValue('isRegisterPasswordAlertShown');
+        };
+
     }
 
 });
 
-const login = createAsyncThunk('/auth/login', async credentials => {
+const login = createAsyncThunk('/auth/login', async (credentials, thunkAPI) => {
     try {
         const { data } = await axios.post('/users/login', credentials);
         token.set(data.token);
         return data;
     } catch (error) {
         console.log(error);
+        return thunkAPI.rejectWithValue('isLogInAlertShown');
+
     }
 
 });
