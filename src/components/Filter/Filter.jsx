@@ -1,30 +1,8 @@
-import styled from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 import { changeFilter } from '../../redux/filter/filterSlice';
 import { getFilter } from '../../redux/filter/filterSelectors';
 import { useGetContactsByNameQuery } from 'redux/contactsSlice';
-
-const Label = styled.label`
-  display: flex;
-  flex-direction: column;
-  font-size: 18px;
-  font-weight: 500;
-`;
-
-const Input = styled.input`
-  width: 95%;
-  margin-top: 5px;
-  &:focus {
-    outline: 3px solid #1ac7d2;
-    border: none;
-  }
-    @media (min-width: 769px){
-    width: 80%;
-  };
-  @media (min-width: 1024px) {
-    width: 40%;
-  })
-`;
+import Form from 'react-bootstrap/Form';
 
 const Filter = () => {
   const dispatch = useDispatch();
@@ -39,10 +17,11 @@ const Filter = () => {
   });
 
   return (
-    <Label>
-      Find contacts by name
-      <Input type="text" value={filter} onChange={onInputHandler} />
-    </Label>
+    <Form.Group className="mb-3" controlId="formBasicName">
+    <Form.Label>Find contacts by name</Form.Label>
+      
+      <Form.Control type="text" value={filter} onChange={onInputHandler} />
+    </Form.Group>
   );
 };
 

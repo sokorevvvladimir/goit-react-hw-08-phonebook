@@ -7,7 +7,7 @@ import Stack from 'react-bootstrap/Stack';
 import styled from 'styled-components';
 
 const Header = styled.header`
-background-color: #1cadca;
+background-color: #39C0ED;
 padding: 1rem 10rem;`;
 
 const Appbar = () => {

@@ -8,7 +8,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 import Appbar from './Appbar';
-import Container from 'react-bootstrap/Container'
+import Container from 'react-bootstrap/Container';
+
 
 const HomePage = lazy(() => import('../pages/HomePage'));
 const RegisterPage = lazy(() => import('../pages/RegisterPage'));
@@ -18,13 +19,14 @@ const MainContentPage = lazy(() => import('../pages/MainContentPage'));
 const App = () => {
   const dispatch = useDispatch();
   const isFetchingCurrentUser = useSelector(authSelectors.getIsFetchingCurrent);
-
+  
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser())
   }, [dispatch]);
   return (!isFetchingCurrentUser && (
     <>
-      <Appbar/>
+      <Appbar />
+      
       <Container fluid className="w-50" style={{padding: 50}}>
         <Suspense fallback={<MainLoader/>}>
           <Routes>

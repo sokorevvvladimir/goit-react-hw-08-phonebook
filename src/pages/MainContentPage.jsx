@@ -3,12 +3,13 @@ import Filter from "../components/Filter";
 import List from "../components/List";
 
 const MainContentPage = () => { 
-    return <>
+ 
+  return <>
       <h1>Phonebook</h1>
       <ContactForm />
       <h2>Contacts</h2>
       <Filter />
-      <List /></>
+    <List/></>
 };
 
 export default MainContentPage;
