@@ -11,6 +11,7 @@ import PropTypes from 'prop-types';
 import Modal from 'react-bootstrap/Modal';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 
 
 const Li = styled.li`
@@ -196,10 +197,11 @@ const ListItem = ({ id, name, number, passDeletedContactInfoForToast, passUpdate
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-          <ModalForm onSubmit={onSubmitHandler}>
-            <Label>
-              Name
-              <Input
+          <Form onSubmit={onSubmitHandler}>
+            <Form.Group className="mb-3" controlId="formBasicName">
+            <Form.Label>Name</Form.Label>
+              
+              <Form.Control
                 type="text"
                 name="name"
                 value={newName}
@@ -208,10 +210,11 @@ const ListItem = ({ id, name, number, passDeletedContactInfoForToast, passUpdate
                 required
                 onChange={onInputHandler}
               />
-            </Label>
-            <Label>
-              Number
-              <Input
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicNumber">
+            <Form.Label>Number</Form.Label>
+              
+              <Form.Control
                 type="tel"
                 name="number"
                 value={newNumber}
@@ -220,15 +223,17 @@ const ListItem = ({ id, name, number, passDeletedContactInfoForToast, passUpdate
                 required
                 onChange={onInputHandler}
               />
-            </Label>
+            </Form.Group>
+            <div className="d-grid gap-2">
             <Button type="submit" disabled={isLoading}>
               {isLoading ? (
                 <Oval color="#25515a" height={20} width={20} />
               ) : (
                 'OK'
               )}
-            </Button>
-            </ModalForm>
+              </Button>
+              </div>
+            </Form>
           </Modal.Body> 
         </Modal>
  

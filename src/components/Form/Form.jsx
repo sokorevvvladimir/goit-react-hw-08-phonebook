@@ -72,8 +72,8 @@ const ContactForm = () => {
 
   return (
     <>
-      <ToastContainer position="middle-end">
-       <Toast bg="info" onClose={() => setContactCreatedToast(false)} show={contactCreatedToast} delay={3000} autohide>
+      <ToastContainer position="bottom-end">
+       <Toast bg="success" onClose={() => setContactCreatedToast(false)} show={contactCreatedToast} delay={3000} autohide>
         <Toast.Header><strong className="me-auto">Success!</strong><small>Just now!</small></Toast.Header>
           <Toast.Body>{`${nameForToast} added to your contacts!`}</Toast.Body>
         </Toast>

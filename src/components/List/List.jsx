@@ -39,14 +39,14 @@ const [shouldUpdateForToast, setShouldUpdateForToast] = useState(false);
 
   return (
     <>
-      <ToastContainer position="middle-end">
-       <Toast bg="info" onClose={() => setDeletedContactForToast(false)} show={deletedContactForToast} delay={3000} autohide>
+      <ToastContainer position="bottom-end">
+       <Toast bg="success" onClose={() => setDeletedContactForToast(false)} show={deletedContactForToast} delay={3000} autohide>
         <Toast.Header><strong className="me-auto">Success!</strong><small>Just now!</small></Toast.Header>
           <Toast.Body>{'Deleted from your contacts!'}</Toast.Body>
         </Toast>
       </ToastContainer>
-      <ToastContainer position="middle-end">
-       <Toast bg="info" onClose={() => setShouldUpdateForToast(false)} show={shouldUpdateForToast} delay={3000} autohide>
+      <ToastContainer position="bottom-end">
+       <Toast bg="success" onClose={() => setShouldUpdateForToast(false)} show={shouldUpdateForToast} delay={3000} autohide>
         <Toast.Header><strong className="me-auto">Success!</strong><small>Just now!</small></Toast.Header>
           <Toast.Body>{'Contact updated!'}</Toast.Body>
         </Toast>
