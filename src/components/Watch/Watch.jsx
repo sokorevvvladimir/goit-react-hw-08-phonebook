@@ -13,7 +13,7 @@ const StyledDiv = styled.div`
 const MainLoader = () => {
   return (
     <StyledDiv>
-      <Watch color="#1cadca" height="170" width="170" ariaLabel="loading" />
+      <Watch color="#39C0ED" height="170" width="170" ariaLabel="loading" />
     </StyledDiv>
   );
 };

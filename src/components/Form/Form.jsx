@@ -6,6 +6,11 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Toast from 'react-bootstrap/Toast';
 import ToastContainer from 'react-bootstrap/ToastContainer';
+import styled from 'styled-components';
+
+const StyledButton = styled(Button)`
+display: flex;
+justify-content: center`;
 
 const ContactForm = () => {
   const [name, setName] = useState('');
@@ -114,13 +119,13 @@ const ContactForm = () => {
           />
       </Form.Group>
       <div className="d-grid gap-2">
-        <Button style={{ display: 'flex', justifyContent: 'center' } }variant="secondary" type="submit" disabled={isLoading}>
+        <StyledButton variant="secondary" type="submit" disabled={isLoading}>
           {isLoading ? (
             <Oval color="#ffffff" height={20} width={20} />
           ) : (
             'Add contact'
           )}
-        </Button>
+        </StyledButton>
         </div>
       </Form>
       </>

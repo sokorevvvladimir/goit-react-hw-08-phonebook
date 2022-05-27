@@ -9,6 +9,7 @@ import PrivateRoute from './PrivateRoute';
 import PublicRoute from './PublicRoute';
 import Appbar from './Appbar';
 import Container from 'react-bootstrap/Container';
+import styled from 'styled-components';
 
 
 const HomePage = lazy(() => import('../pages/HomePage'));
@@ -16,6 +17,20 @@ const RegisterPage = lazy(() => import('../pages/RegisterPage'));
 const LoginPage = lazy(() => import('../pages/LoginPage'));
 const MainContentPage = lazy(() => import('../pages/MainContentPage'));
 
+const StyledContainer = styled(Container)`
+padding: 50px;
+
+@media (max-width: 767px){
+    width: 100%;
+  };
+
+@media (min-width: 768px){
+    width: 75%;
+  };
+
+@media (min-width: 1024px){
+    width: 50%;
+  }  `;
 const App = () => {
   const dispatch = useDispatch();
   const isFetchingCurrentUser = useSelector(authSelectors.getIsFetchingCurrent);
@@ -27,7 +42,7 @@ const App = () => {
     <>
       <Appbar />
       
-      <Container fluid className="w-50" style={{padding: 50}}>
+      <StyledContainer fluid>
         <Suspense fallback={<MainLoader/>}>
           <Routes>
             <Route path="/" element={<PublicRoute />}>
@@ -47,7 +62,7 @@ const App = () => {
           </Routes>
         </Suspense>
         <Toaster />
-        </Container>
+        </StyledContainer>
     </>
     )
   );

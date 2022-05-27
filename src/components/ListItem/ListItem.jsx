@@ -23,105 +23,39 @@ list-style: none;
   &:not(:last-child) {
     margin-bottom: 15px;
   }
-
-  // @media (min-width: 769px){
-  //   width: 80%;
-  //   height: 50px;
-  // };
-  // @media (min-width: 1024px) {
-  //   width: 40%;
-  // }
   )
 `;
+const StyledCard = styled(Card)`
+@media (max-width: 767px) {
+  font-size: 14px;
+}`;
 
-// const Button = styled.button`
-//   width: 100px;
-//   min-width: 100px;
-//   height: 40px;
-//   font-size: 12px;
-//   font-weight: 400;
-//   border-radius: 3px;
-//   margin-left: 10px;
-//   max-height: 40px;
-//   cursor: pointer;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
+const StyledCardTitle = styled(Card.Title)`
+margin-bottom: 0;
 
-//   &:hover {
-//     background-color: #cde2e5;
-//   }
-//   &:active {
-//     color: #ffffff;
-//     background-color: #b3c2c4;
-//   }
-// `;
+@media (max-width: 767px) {
+  font-size: 14px;
+}`;
+const StyledCardBody = styled(Card.Body)`
+display: flex;
+justify-content: space-between;
+align-items: center;
 
-// const StyledDiv = styled.div`
-//   height: 90px;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: space-between;
-//   align-items: center;
+@media (max-width: 767px) {
+  padding: 5px 5px;
+}
+`;
 
-//   @media (min-width: 769px) {
-//     flex-direction: row;
-//     max-height: 40px;
-//   } ;
-// `;
+const StyledCardText = styled(Card.Text)`
+margin-bottom: 0;`;
 
-// const ModalButton = styled.button`
-//   width: 15vw;
-//   height: 40px;
-//   font-size: 20px;
-//   font-weight: 400;
-//   border-radius: 3px;
-//   cursor: pointer;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   margin-left: auto;
-//   margin-right: auto;
+const StyledButton = styled(Button)`
+margin-right: 1rem`;
 
-//   &:hover {
-//     background-color: #cde2e5;
-//   }
-//   &:active {
-//     color: #ffffff;
-//     background-color: #b3c2c4;
-//   }
-// `;
-
-// const ModalForm = styled.form`
-//   display: flex;
-//   flex-direction: column;
-//   width: 80%;
-//   padding: 10px;
-//   background-image: repeating-linear-gradient(
-//     -45deg,
-//     #1cadca,
-//     #1cadca 10px,
-//     #25515a 10px,
-//     #25515a 20px
-//   );
-// `;
-
-// const Label = styled.label`
-//   display: flex;
-//   flex-direction: column;
-//   font-weight: 700;
-//   color: #ffffff;
-//   margin-bottom: 20px;
-// `;
-
-// const Input = styled.input`
-//   width: 95%;
-//   margin-top: 5px;
-//   &:focus {
-//     outline: 3px solid #1ac7d2;
-//     border: none;
-//   }
-// `;
+const StyledModalButton = styled(Button)`
+display: flex;
+justify-content: center;
+align-items: center`;
 
 const ListItem = ({ id, name, number, passDeletedContactInfoForToast, passUpdatedContactInfoForToast }) => {
   const dispatch = useDispatch();
@@ -163,31 +97,7 @@ const ListItem = ({ id, name, number, passDeletedContactInfoForToast, passUpdate
   };
 
   return (
-    <>
-      {/* <Modal
-      {...props}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-    > */}
-      {/* <Modal.Header closeButton> */}
-        {/* <Modal.Title id="contained-modal-title-vcenter">
-          Modal heading
-        </Modal.Title> */}
-      {/* </Modal.Header> */}
-      {/* <Modal.Body>
-        <h4>Centered Modal</h4>
-        <p>
-          Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-          dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-          consectetur ac, vestibulum at eros.
-        </p>
-      </Modal.Body> */}
-      {/* <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button>
-      </Modal.Footer> */}
-    {/* </Modal> */}
-      
+    <>      
         <Modal show={isShown} onHide={toggleModal} size="lg"
       aria-labelledby="contained-modal-title-vcenter"
           centered>
@@ -225,13 +135,13 @@ const ListItem = ({ id, name, number, passDeletedContactInfoForToast, passUpdate
               />
             </Form.Group>
             <div className="d-grid gap-2">
-            <Button type="submit" disabled={isLoading}>
+            <StyledModalButton type="submit" disabled={isLoading}>
               {isLoading ? (
-                <Oval color="#25515a" height={20} width={20} />
+                <Oval color="#ffffff" height={20} width={20} />
               ) : (
                 'OK'
               )}
-              </Button>
+              </StyledModalButton>
               </div>
             </Form>
           </Modal.Body> 
@@ -240,14 +150,13 @@ const ListItem = ({ id, name, number, passDeletedContactInfoForToast, passUpdate
       
       
       <Li>
-        <Card bg='info'>
-          <Card.Body style={{display: 'flex', justifyContent: 'space-between',
-  alignItems: 'center'}}>
-            <Card.Title style={{marginBottom: 0}}>{name}:</Card.Title>
-            <Card.Text style={{marginBottom: 0}}>{number}</Card.Text>
-            <div><Button variant="outline-light" type="button" onClick={toggleModal} style={{marginRight: '1rem'}}>
+        <StyledCard bg='info'>
+          <StyledCardBody >
+            <StyledCardTitle>{name}:</StyledCardTitle>
+            <StyledCardText>{number}</StyledCardText>
+            <div><StyledButton variant="outline-light" type="button" onClick={toggleModal}>
             Edit
-          </Button>
+          </StyledButton>
             <Button
               variant="outline-light"
             type="button"
@@ -265,30 +174,9 @@ const ListItem = ({ id, name, number, passDeletedContactInfoForToast, passUpdate
             )}
               </Button>
               </div>
-          </Card.Body>
-        </Card>
-        {/* {name}: {number}
-        <StyledDiv>
-          <Button type="button" onClick={toggleModal}>
-            Edit
-          </Button>
-          <Button
-            type="button"
-            onClick={() => {
-              dispatch(clearFilter());
-              deleteContact(id);
-              passDeletedContactInfoForToast(true);
-            }}
-            disabled={isDeleting}
-          >
-            {isDeleting ? (
-              <Oval color="#25515a" height={20} width={20} />
-            ) : (
-              'Delete'
-            )}
-          </Button>
-        </StyledDiv> */}
-      </Li>
+          </StyledCardBody>
+        </StyledCard>
+       </Li>
       
     </>
   );

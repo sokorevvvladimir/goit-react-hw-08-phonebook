@@ -9,7 +9,40 @@ const Span = styled.span`
 margin-right: 10px`;
 
 const StyledDiv = styled.div`
-margin-left: auto`;
+margin-left: auto;
+display: flex;
+align-items: center;`;
+
+const StyledNavLink = styled(NavLink)`
+text-decoration: none;
+position: relative;
+color: #000000;
+text-transform: uppercase;
+
+&:hover {
+    color: #ffffff;
+};
+
+&.active{
+  color: #ffffff;
+  
+  };
+
+&::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: currentColor;
+    transform: scaleX(0);
+    transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  &:hover::after {
+    transform: scaleX(1);
+  }`;
 
 const UserMenu = () => {
     const dispatch = useDispatch();
@@ -17,7 +50,7 @@ const UserMenu = () => {
 
     return <>
         <Stack direction="horizontal" gap={3}>
-            <div className="bg-light border"><NavLink to="/contacts">Contacts</NavLink></div>
+            <div><StyledNavLink to="/contacts">Contacts</StyledNavLink></div>
             <StyledDiv className="ms-auto">
               <Span>{email}</Span>
               <Button type="button" variant="outline-dark" onClick={() => dispatch(authOperations.logout())}>Log Out</Button>
