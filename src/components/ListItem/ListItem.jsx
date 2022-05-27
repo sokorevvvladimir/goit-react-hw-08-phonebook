@@ -92,36 +92,36 @@ list-style: none;
 //   }
 // `;
 
-const ModalForm = styled.form`
-  display: flex;
-  flex-direction: column;
-  width: 80%;
-  padding: 10px;
-  background-image: repeating-linear-gradient(
-    -45deg,
-    #1cadca,
-    #1cadca 10px,
-    #25515a 10px,
-    #25515a 20px
-  );
-`;
+// const ModalForm = styled.form`
+//   display: flex;
+//   flex-direction: column;
+//   width: 80%;
+//   padding: 10px;
+//   background-image: repeating-linear-gradient(
+//     -45deg,
+//     #1cadca,
+//     #1cadca 10px,
+//     #25515a 10px,
+//     #25515a 20px
+//   );
+// `;
 
-const Label = styled.label`
-  display: flex;
-  flex-direction: column;
-  font-weight: 700;
-  color: #ffffff;
-  margin-bottom: 20px;
-`;
+// const Label = styled.label`
+//   display: flex;
+//   flex-direction: column;
+//   font-weight: 700;
+//   color: #ffffff;
+//   margin-bottom: 20px;
+// `;
 
-const Input = styled.input`
-  width: 95%;
-  margin-top: 5px;
-  &:focus {
-    outline: 3px solid #1ac7d2;
-    border: none;
-  }
-`;
+// const Input = styled.input`
+//   width: 95%;
+//   margin-top: 5px;
+//   &:focus {
+//     outline: 3px solid #1ac7d2;
+//     border: none;
+//   }
+// `;
 
 const ListItem = ({ id, name, number, passDeletedContactInfoForToast, passUpdatedContactInfoForToast }) => {
   const dispatch = useDispatch();
