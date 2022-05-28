@@ -13,6 +13,9 @@ const StyledUl = styled.ul`
   padding-inline-start: 0;
 `;
 
+const ToastContainerWithZindex = styled(ToastContainer)`
+z-index: 999;`;
+
 const List = () => {
   const { data, isFetching } = useGetAllContactsQuery();
   const contacts = data;
@@ -39,18 +42,18 @@ const [shouldUpdateForToast, setShouldUpdateForToast] = useState(false);
 
   return (
     <>
-      <ToastContainer position="bottom-end">
+      <ToastContainerWithZindex position="bottom-end">
        <Toast bg="success" onClose={() => setDeletedContactForToast(false)} show={deletedContactForToast} delay={3000} autohide>
         <Toast.Header><strong className="me-auto">Success!</strong><small>Just now!</small></Toast.Header>
           <Toast.Body>{'Deleted from your contacts!'}</Toast.Body>
         </Toast>
-      </ToastContainer>
-      <ToastContainer position="bottom-end">
+      </ToastContainerWithZindex>
+      <ToastContainerWithZindex position="bottom-end">
        <Toast bg="success" onClose={() => setShouldUpdateForToast(false)} show={shouldUpdateForToast} delay={3000} autohide>
         <Toast.Header><strong className="me-auto">Success!</strong><small>Just now!</small></Toast.Header>
           <Toast.Body>{'Contact updated!'}</Toast.Body>
         </Toast>
-        </ToastContainer>
+        </ToastContainerWithZindex>
     <StyledUl>
       {isFetching && <MainLoaderSpinner />}
       {contacts &&

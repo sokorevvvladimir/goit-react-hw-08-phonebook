@@ -18,6 +18,7 @@ text-decoration: none;
 position: relative;
 color: #000000;
 text-transform: uppercase;
+transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
 &:hover {
     color: #ffffff;
@@ -46,13 +47,13 @@ text-transform: uppercase;
 
 const UserMenu = () => {
     const dispatch = useDispatch();
-    const email = useSelector(authSelectors.getUserEmail);
+    const name = useSelector(authSelectors.getUserName);
 
     return <>
         <Stack direction="horizontal" gap={3}>
             <div><StyledNavLink to="/contacts">Contacts</StyledNavLink></div>
             <StyledDiv className="ms-auto">
-              <Span>{email}</Span>
+              <Span>{name}</Span>
               <Button type="button" variant="outline-dark" onClick={() => dispatch(authOperations.logout())}>Log Out</Button>
             </StyledDiv>
         </Stack>

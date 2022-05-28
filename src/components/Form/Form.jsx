@@ -12,6 +12,9 @@ const StyledButton = styled(Button)`
 display: flex;
 justify-content: center`;
 
+const ToastContainerWithZindex = styled(ToastContainer)`
+z-index: 999;`;
+
 const ContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
@@ -77,7 +80,7 @@ const ContactForm = () => {
 
   return (
     <>
-      <ToastContainer position="bottom-end">
+      <ToastContainerWithZindex position="bottom-end">
        <Toast bg="success" onClose={() => setContactCreatedToast(false)} show={contactCreatedToast} delay={3000} autohide>
         <Toast.Header><strong className="me-auto">Success!</strong><small>Just now!</small></Toast.Header>
           <Toast.Body>{`${nameForToast} added to your contacts!`}</Toast.Body>
@@ -90,7 +93,7 @@ const ContactForm = () => {
         <Toast.Header><strong className="me-auto">Warning!</strong><small>Just now!</small></Toast.Header>
           <Toast.Body>{`Contact with this phone number is already in your contacts.`}</Toast.Body>
         </Toast>
-        </ToastContainer>
+        </ToastContainerWithZindex>
     <Form onSubmit={onSubmitHandler}>
       <Form.Group className="mb-3" controlId="formBasicName">
         <Form.Label>Name</Form.Label>

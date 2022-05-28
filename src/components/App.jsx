@@ -16,6 +16,7 @@ const HomePage = lazy(() => import('../pages/HomePage'));
 const RegisterPage = lazy(() => import('../pages/RegisterPage'));
 const LoginPage = lazy(() => import('../pages/LoginPage'));
 const MainContentPage = lazy(() => import('../pages/MainContentPage'));
+const NotFoundPage = lazy(() => import('../pages/NotFoundPage'));
 
 const StyledContainer = styled(Container)`
 padding: 50px;
@@ -49,7 +50,7 @@ const App = () => {
               <Route path="/" element={<HomePage />}/>
             </Route>
             
-            <Route path="/register" element={<PublicRoute restricted redirectTo="/"/>}>
+            <Route path="/register" element={<PublicRoute restricted redirectTo="/contacts"/>}>
               <Route path="/register" element={<RegisterPage />}/>
             </Route>
             <Route path="/login" element={<PublicRoute restricted redirectTo="/contacts"/>}>
@@ -58,6 +59,9 @@ const App = () => {
             <Route path="/contacts" element={<PrivateRoute redirectTo="/login"/>}>
               <Route path="/contacts" element={<MainContentPage />}/>
             </Route> 
+            <Route path="*" element={<PublicRoute restricted redirectTo="/contacts" />}>
+              <Route path="*" element={<NotFoundPage/> }/>
+            </Route>
             
           </Routes>
         </Suspense>
